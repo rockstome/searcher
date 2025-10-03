@@ -63,7 +63,9 @@ function createTree(items: Test[], container: HTMLElement, query = "") {
 
     name.addEventListener("click", () => {
       showDetails(item);
-      document.querySelectorAll(".test-name.selected").forEach((n) => n.classList.remove("selected"));
+      document
+        .querySelectorAll(".test-name.selected")
+        .forEach((n) => n.classList.remove("selected"));
       name.classList.add("selected");
     });
 
@@ -112,7 +114,19 @@ function showDetails(t: Test) {
 
 // Replace/createTree with search-aware version and add filtering + highlight helpers
 function escapeHtml(s: string) {
-  return s.replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'} as any)[c]);
+  return s.replace(
+    /[&<>"']/g,
+    (c) =>
+      ((
+        {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;",
+        } as any
+      )[c])
+  );
 }
 
 function highlightText(text: string, query: string) {
@@ -124,7 +138,13 @@ function highlightText(text: string, query: string) {
 
 function matchesItem(item: Test, q: string) {
   if (!q) return true;
-  const s = (item.id + " " + item.name + " " + (item.description || "")).toLowerCase();
+  const s = (
+    item.id +
+    " " +
+    item.name +
+    " " +
+    (item.description || "")
+  ).toLowerCase();
   return s.includes(q.toLowerCase());
 }
 
@@ -134,7 +154,11 @@ function filterTests(items: Test[], q: string): Test[] {
   for (const it of items) {
     const filteredChildren = it.children ? filterTests(it.children, q) : [];
     if (matchesItem(it, q) || filteredChildren.length > 0) {
-      const copy: Test = { id: it.id, name: it.name, description: it.description };
+      const copy: Test = {
+        id: it.id,
+        name: it.name,
+        description: it.description,
+      };
       if (filteredChildren.length > 0) copy.children = filteredChildren;
       out.push(copy);
     }
@@ -162,7 +186,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // initial render
   renderTree();
 
-  const input = document.getElementById("search-input") as HTMLInputElement | null;
+  const input = document.getElementById(
+    "search-input"
+  ) as HTMLInputElement | null;
   if (input) {
     input.addEventListener("input", () => {
       const q = (input.value || "").trim().slice(0, 20);
