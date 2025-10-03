@@ -3,6 +3,7 @@
   --panel: #ffffff;
   --accent: #2b6cb0;
   --muted: #6c757d;
+  --left-width: 38%;
 }
 
 body {
@@ -28,6 +29,16 @@ body {
   padding: 12px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
   overflow: auto;
+}
+
+.left-panel {
+  width: var(--left-width);
+  min-width: 200px;
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-sizing: border-box;
 }
 
 .details {
@@ -96,14 +107,11 @@ pre.json {
   overflow: auto;
 }
 
-.left-panel {
-  width: 38%;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 #search-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: none;
   height: 36px;
   padding: 6px 10px;
   border-radius: 6px;
@@ -118,6 +126,15 @@ pre.json {
   box-shadow: 0 0 0 3px rgba(43,108,176,0.08);
 }
 
+/* ensure tree content aligns to the same content width as the search input */
+#tree,
+.tree {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: none;
+}
+
 .no-results {
   color: var(--muted);
   padding: 12px;
@@ -129,4 +146,62 @@ mark {
   color: inherit;
   padding: 0 2px;
   border-radius: 2px;
+}
+
+.playlist {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.playlist input {
+  height: 34px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #d0d7de;
+  font-size: 13px;
+  background: #fff;
+}
+
+.playlist-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.playlist-controls button {
+  height: 32px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #d0d7de;
+  background: white;
+  cursor: pointer;
+}
+
+.playlist-controls button:hover {
+  background: rgba(43,108,176,0.04);
+}
+
+.playlist-controls .muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* resizer */
+.resizer {
+  width: 10px;
+  cursor: col-resize;
+  background: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  display: block;
+  /* make it slightly visible on hover */
+  transition: background 0.12s;
+}
+.resizer:hover {
+  background: rgba(0,0,0,0.04);
+}
+.resizer:active {
+  background: rgba(0,0,0,0.06);
 }
