@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>e2e test searcher (mock)</title>
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+  <div id="app" class="container">
+    <div class="left-panel">
+      <input id="search-input" type="search" maxlength="20" placeholder="Szukaj (max 20 znaków)" aria-label="Szukaj testów" />
+      <div id="tree" class="tree"></div>
+    </div>
+    <div id="details" class="details">
+      <div class="empty">Wybierz test po lewej, aby zobaczyć definicję</div>
+    </div>
+  </div>
+
+  <script type="module" src="./dist/main.js"></script>
+</body>
+</html>

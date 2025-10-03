@@ -1,0 +1,14 @@
+{
+  "name": "e2etestsearcher",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "start": "npm run build && npx http-server -c-1 -p 8080 ."
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "http-server": "^14.1.1"
+  }
+}
